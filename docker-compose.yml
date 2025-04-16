@@ -1,0 +1,9 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-challenge-frontend
+    ports:
+      - "5173:80" # 80 es el puerto por defecto que usa Nginx dentro del contenedor
+    restart: unless-stopped
