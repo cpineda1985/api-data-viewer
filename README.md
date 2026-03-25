@@ -1,66 +1,72 @@
-# API Challenge - Frontend (React + Vite)
+# API Data Viewer
 
-El  proyecto representa la solución al frontend del API Challenge. Utiliza React con Vite, tiene además testing automatizado.
+> A React dashboard for viewing and exploring data from external APIs. Built with Vite, React Bootstrap, and tested with Jest.
 
-## Características principales
+## What it does
 
-- Renderizado de tabla con resultados obtenidos desde el backend (`/files/data`).
-- Soporte de filtros por nombre de archivo (`fileName`).
-- Paginación controlada por parámetros `offset` y `limit`.
-- Opción de incluir líneas vacías (`includeEmpty=true`).
-- Indicadores de carga y manejo de errores.
-- Tests con Jest y React Testing Library.
-- Mock de `fetch` condicional para facilitar pruebas sin conexión a backend.
+This frontend consumes the [API Data Processor](https://github.com/cpineda1985/api-data-processor) backend and provides a clean interface to explore validated CSV data.
 
----
+**Users can:**
+- Browse data from multiple files in a sortable table
+- Filter by file name
+- Toggle inclusion of partially valid rows (`includeEmpty`)
+- Navigate through large datasets with pagination
+- See loading states and clear error messages
 
-## Stack utilizado
+## Key features
 
-- **React** 18
-- **Vite** como bundler
-- **JavaScript ES6+**
-- **React Bootstrap** para UI
-- **Jest** y **React Testing Library** para pruebas
-- **ESLint** `v8.56.0`
-- **Node.js** `v16.20.2`
+- **Real-time filtering** – Filter by file name as you type
+- **Pagination** – Navigate through large datasets with next/previous controls
+- **Empty rows toggle** – Option to include or exclude partially valid CSV rows
+- **Responsive UI** – Built with React Bootstrap, works on desktop and tablet
+- **Error handling** – Clear messages for 404s, network errors, and API failures
+- **Loading indicators** – Visual feedback during data fetching
 
----
+## Quick start
 
+### Prerequisites
+
+- Node.js (v16+)
+- The [API Data Processor](https://github.com/cpineda1985/api-data-processor) backend running on `http://localhost:3000`
+
+### Installation
+
+```bash
+git clone https://github.com/cpineda1985/api-data-viewer
+cd api-data-viewer
+npm install
+npm run dev
+```
 ## Scripts
 
 ```bash
-npm run dev       # Levanta el proyecto en modo desarrollo
-npm run build     # Construye para producción
-npm run preview   # Previsualiza el build
-npm run test      # Ejecuta pruebas con Jest
-npm run test:all  # Ejecuta pruebas con cobertura
-npm run lint      # Ejecuta ESLint para validar estilos y errores
+npm run dev       # Start development server
+npm run build     # Build for production
+npm run preview   # Preview production build
+npm run test      # Run tests
+npm run test:all  # Run tests with coverage report
+npm run lint      # Run ESLint
 ```
 
 ---
 
 ## Tests con y sin mock
 
-Por defecto, los tests usan un `useMock=true` que hace  llamadas a `fetch` con valores simulados desde mockData.json
+The project includes comprehensive tests with Jest and React Testing Library:
+Component rendering
+File name filtering
+Toggle for empty rows
+404 error handling
+Input clearing behavior
+Loading state indicators
 
-Para probar contra el backend (`http://localhost:3000/files/data`), se cambia `useMock=false` en `FileDataTable.test.jsx`:
+Tests can run against mocked data (default) or against a live backend by changing useMock in the test file.
 
 ```js
 const useMock = false;
 ```
-
-Esto permite probar conectividad real al backend desde los tests.
-
 ---
-
-El proyecto usa ESLint `v8.56.0`, compatible con Node.js 16. Para su ejecución:
-
-```bash
-npm run lint
-```
-
----
-## Estructura del proyecto
+## Project structure
 
 ```
 src/
@@ -74,22 +80,12 @@ src/
 ```
 
 ---
-## Cobertura y pruebas unitarias
+## Production features
 
-Incluye pruebas unitarias que cubren:
-
-- Renderizado de componentes
-- Filtrado por nombre
-- Activación de "incluir vacíos"
-- Comportamiento ante errores 404
-- Limpieza de inputs
-- Indicadores visuales durante la carga
-
-Para ejecutarlas:
-
-```bash
-npm run test:all
-```
+Containerized – Docker and docker-compose ready
+Code quality – ESLint configuration included
+Test coverage – Unit tests with coverage reporting
+Mock data support – Test without backend dependency
 
 ---
 
@@ -97,4 +93,3 @@ npm run test:all
 
 Cesar Daniel Pineda  
 📧 cesardanielpineda@gmail.com  
-🔗 [Repositorio GitHub frontEnd](https://github.com/cpineda1985/api-challenge-frontend)
